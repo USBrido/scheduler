@@ -162,3 +162,15 @@ storiesOf("Button", module)
                 <Error
                   message="Could not delete appointment."
                   onClose={action("onClose")} />)
+              .add("Edit", () =>
+                <Edit
+                  name="Cohana Roy"
+                  interviewers={interviewers}
+                  interviewer={3}
+                  onSave={action("onSave")}
+                  onCancel={action("onCancel")} />)
+              .add("Create", () =>
+                <Create
+                  interviewers={interviewers}
+                  onSave={action("onSave")}
+                  onCancel={action("onCancel")} />)
