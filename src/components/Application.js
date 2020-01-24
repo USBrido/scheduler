@@ -1,9 +1,8 @@
 import React, { useState , useEffect } from "react";
 import DayList from "./DayList.js";
-import Appointment from "components/Appointment"
+import Appointment from "components/Appointment";
 import Axios from "axios";
 import {getAppointmentsForDay, getInterview} from "helpers/selectors";
-
 import "components/Application.scss";
 
 
@@ -22,9 +21,45 @@ useEffect(() => {
     Axios.get('/api/appointments'), 
     Axios.get('/api/interviewers'), 
   ]).then((all) => {
-    setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
+    setState(prev => ({...prev, 
+      days: all[0].data, 
+      appointments: all[1].data, 
+      interviewers: all[2].data }));
     });
   }, []);
+
+  function setDay(day) {
+    setState(prev =>  {return {...prev, day}})
+  }
+
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({...state,appointments });
+    return Axios.put(`/api/appointments/${id}`)
+  } 
+
+  function cancelInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({...state,appointments });
+    return Axios.put(`/api/appointments/${id}`)
+  }
 
   const appointments = getAppointmentsForDay(state, state.day);
 
@@ -37,6 +72,7 @@ useEffect(() => {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        bookInterview={bookInterview}
       />
     );
   });
@@ -54,7 +90,7 @@ useEffect(() => {
           <DayList
             days={state.days}
             day={state.day}
-            setDay={state.setDay}
+            setDay={setDay}
           />  
         </nav>
         <img
