@@ -71,6 +71,14 @@ export default function Appointment(props){
       .catch(error => transition(ERROR_SAVE, true));
   }
 
+  function destroy(event) {
+    transition(DELETE, true);
+    props
+     .cancelInterview(props.id)
+     .then(() => transition(EMPTY))
+     .catch(error => transition(ERROR_DELETE, true));
+  }
+
   return <article className="appointment">
   <Header time={props.time}/>
   
@@ -123,9 +131,8 @@ export default function Appointment(props){
     message={`Error deleting appointment`}
       onClose={() => back()}
     />
-
+    
     }
   </article>
 
 }
-
