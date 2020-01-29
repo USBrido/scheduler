@@ -14,13 +14,12 @@ const {
   bookInterview,
   cancelInterview,
 } = useApplicationData();
-  // console.log(state)
+
   const appointments = getAppointmentsForDay(state, state.day);
 
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day)
-    // console.log(interviewers)
     return (
       <Appointment
         key={appointment.id}
@@ -33,7 +32,7 @@ const {
       />
     );
   });
-  // console.log(state.days)
+
   return (
     <main className="layout">
       <section className="sidebar">

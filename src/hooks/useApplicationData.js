@@ -66,7 +66,6 @@ export default function useApplicationData() {
 
   //creates the appointment
   const bookInterview = (id, interview) => {
-    console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview
@@ -85,10 +84,6 @@ export default function useApplicationData() {
 
   //deletes the appointment
   const cancelInterview = (id) => {
-    // const appointment = {
-    //   ...state.appointments[id],
-    //   interview
-    // };
     return Axios.delete(`/api/appointments/${id}`)
       .then(() => {
         const dayObject = state.days.find(day => day.name === state.day);

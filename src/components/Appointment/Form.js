@@ -27,26 +27,24 @@ export default function FormData(props) {
       setError("Student name cannot be blank");
       return;
     }
-    if (!interviewer) {
-      setError("Interviewer cannot be blank");
-      return;
-    }
-    setError("")
+    setError("");
     props.onSave(name, interviewer);
   }
-  // console.log("Props for Form", props.interviewers)
 
   return <main className="appointment__card appointment__card--create">
   <section className="appointment__card-left">
     <form autoComplete="off" onSubmit={event => event.preventDefault()}>
-      <input onChange={handleChange}
+      <input 
+        onChange={handleChange}
         className="appointment__create-input text--semi-bold"
         name="name"
         value={name}
         type="text"
         placeholder="Enter Student Name"
+        data-testid="student-name-input"
       />
     </form>
+    <section className="appointment__validation">{error}</section>
     <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
   </section>
   <section className="appointment__card-right">
