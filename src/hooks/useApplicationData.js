@@ -49,9 +49,9 @@ export default function useApplicationData() {
   const setDay = day => dispatch({ type: SET_DAY, day })
 
   useEffect(() => {
-    const daysData = Axios.get('http://localhost:8000/api/days')
-    const appointmentsData = Axios.get('http://localhost:8000/api/appointments')
-    const interviewersData = Axios.get('http://localhost:8000/api/interviewers')
+    const daysData = Axios.get('/api/days')
+    const appointmentsData = Axios.get('/api/appointments')
+    const interviewersData = Axios.get('/api/interviewers')
     Promise.all([daysData, appointmentsData, interviewersData])
       .then((all) => {
       dispatch({
