@@ -1,5 +1,5 @@
-import  {getAppointmentsForDay}  from "helpers/selectors";
-import  {getInterviewersForDay}  from "helpers/selectors";
+import { getAppointmentsForDay } from "helpers/selectors";
+import { getInterviewersForDay } from "helpers/selectors";
 
 const state = {
   days: [
@@ -32,7 +32,7 @@ const state = {
       interview: { student: "Chad Takahashi", interviewer: 2 }
     }
   },
-  
+
   interviewers: {
     "1": {
       id: 1,
