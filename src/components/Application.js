@@ -1,19 +1,19 @@
 import React from "react";
 import DayList from "./DayList.js";
 import Appointment from "components/Appointment";
-import {getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import "components/Application.scss";
 import useApplicationData from "../hooks/useApplicationData"
 
 
 export default function Application(props) {
 
-const {
-  state,
-  setDay,
-  bookInterview,
-  cancelInterview,
-} = useApplicationData();
+  const {
+    state,
+    setDay,
+    bookInterview,
+    cancelInterview,
+  } = useApplicationData();
 
   const appointments = getAppointmentsForDay(state, state.day);
 
@@ -36,7 +36,7 @@ const {
   return (
     <main className="layout">
       <section className="sidebar">
-          <img
+        <img
           className="sidebar--centered"
           src="images/logo.png"
           alt="Interview Scheduler"
@@ -47,7 +47,7 @@ const {
             days={state.days}
             day={state.day}
             setDay={setDay}
-          />  
+          />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -56,7 +56,7 @@ const {
         />
       </section>
       <section className="schedule">{schedule}
-      <Appointment id="last" time="5pm" />
+        <Appointment id="last" time="5pm" />
       </section>
     </main>
   );

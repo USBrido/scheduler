@@ -23,13 +23,13 @@ export default function useApplicationData() {
     const interviewersData = Axios.get('/api/interviewers')
     Promise.all([daysData, appointmentsData, interviewersData])
       .then((all) => {
-      dispatch({
-        type: SET_APPLICATION_DATA,
-        days: all[0].data,
-        appointments: all[1].data,
-        interviewers: all[2].data
-      })
-    });
+        dispatch({
+          type: SET_APPLICATION_DATA,
+          days: all[0].data,
+          appointments: all[1].data,
+          interviewers: all[2].data
+        })
+      });
   }, []);
 
 
@@ -45,7 +45,7 @@ export default function useApplicationData() {
           const dayObject = state.days.find(day => day.name === state.day);
           state.days[dayObject.id - 1].spots--;
           dispatch({ type: SET_INTERVIEW, id, interview })
-        }else{
+        } else {
           dispatch({ type: SET_INTERVIEW, id, interview })
         }
       })

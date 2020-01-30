@@ -20,11 +20,11 @@ export default function reducer(state, action) {
       return {
         ...state,
         appointments: {
-          ...state.appointments, 
+          ...state.appointments,
           [id]: {
             ...state.appointments[action.id],
             interview: action.interview ? { ...interview } : null
-        }
+          }
         }
       }
     }
