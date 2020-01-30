@@ -3,13 +3,8 @@ import { render, container, debug, cleanup, waitForElement, fireEvent, prettyDOM
 import Application from "components/Application"
 import Appointment from "components/Appointment/index";
 import axios from "../../__mocks__/axios";
-// afterEach(cleanup);
 
-// it("defaults to Monday and changes the schedule when a new day is selected", () => {
-//   render(<Application />);
-// });
-// const { container, debug } = render(<Application />);
-
+afterEach(cleanup);
 
 describe("Appointment", () => {
   it("renders without crashing", () => {
@@ -30,7 +25,6 @@ it("changes the schedule when a new day is selected", () => {
 
   return waitForElement(() => getByText("Monday")).then(() => {
     fireEvent.click(getByText("Tuesday"));
-
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
 });
@@ -41,7 +35,6 @@ it("changes the schedule when a new day is selected", async () => {
   await waitForElement(() => getByText("Tuesday"));
 
   fireEvent.click(getByText("Tuesday"));
-
   expect(getByText("Leopold Silvers")).toBeInTheDocument();
 });
 
